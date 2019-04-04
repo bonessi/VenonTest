@@ -18,6 +18,7 @@ namespace CRUD_Estudiantes.Models
         public Course()
         {
             this.CourseInstructor = new HashSet<CourseInstructor>();
+            this.Enrollment = new HashSet<Enrollment>();
         }
     
         public int CourseID { get; set; }
@@ -28,5 +29,7 @@ namespace CRUD_Estudiantes.Models
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseInstructor> CourseInstructor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Enrollment> Enrollment { get; set; }
     }
 }

@@ -30,6 +30,7 @@ namespace CRUD_Estudiantes.Controllers
 
         }
 
+        
         [HttpGet]
         public ActionResult Agregar()
         {
@@ -60,6 +61,22 @@ namespace CRUD_Estudiantes.Controllers
                 return View();
             }
 
+        }
+
+        public ActionResult ListaCursos()
+        {
+            using (var db = new VenonCollegeEntities())
+            {
+                return PartialView(db.Course.ToList());
+            }
+        }
+
+        public ActionResult ListaEstudiantes()
+        {
+            using (var db = new VenonCollegeEntities())
+            {
+                return PartialView(db.Person.Where(e => e.Discriminator == "Student").ToList());
+            }
         }
 
         [HttpGet]

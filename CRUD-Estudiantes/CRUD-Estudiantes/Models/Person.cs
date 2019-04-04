@@ -14,10 +14,19 @@ namespace CRUD_Estudiantes.Models
     
     public partial class Person
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Person()
+        {
+            this.Enrollment = new HashSet<Enrollment>();
+        }
+    
         public int ID { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public Nullable<System.DateTime> HireDate { get; set; }
         public string Discriminator { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Enrollment> Enrollment { get; set; }
     }
 }
