@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CRUD_Estudiantes.Models.Enrollment>
+
+@{
+    ViewBag.Title = "Enrollments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Venon College </h1>
+</div>
+
+<h2>Enrollments</h2>
+
+<p>
+    @Html.ActionLink("Add", "Agregar")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Course
+        </th>
+        <th>
+            Student
+        </th>
+        <th>
+            Enrollment Date
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.getCourseName(item.CourseID)
+        </td>
+        <td>
+            @item.getStudentName(item.StudentID)
+        </td>
+        <td>
+            @item.EnrollmentDate.ToShortDateString()
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grade)
+        </td>
+        <td>
+            @Html.ActionLink("View", "Detalle", new { id = item.EnrollmentID }) |
+            @Html.ActionLink("Edit", "Editar", new { id = item.EnrollmentID })  |
+            @Html.ActionLink("Delete", "Eliminar", new { id=item.EnrollmentID }, new { @class = "eEliminar"})
+        </td>
+    </tr>
+}
+</table>
+
+@section scripts{
+<script>
+    $(".eEliminar").click(function (event) { 
+        if (!confirm('Are you sure you want to delete?')) {
+            event.preventDefault();
+        }
+    });
+</script>
+}
