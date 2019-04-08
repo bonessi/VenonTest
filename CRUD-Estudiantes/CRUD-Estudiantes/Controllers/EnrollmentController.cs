@@ -17,7 +17,7 @@ namespace CRUD_Estudiantes.Controllers
             {
                 using (var db = new VenonCollegeEntities())
                 {
-                    //List<Enrollment> lista = db.Enrollment.Where(e => e.Grade > 5).ToList();
+                    
                     var data = from e in db.Enrollment
                                join p in db.Person on e.StudentID equals p.ID
                                join c in db.Course on e.CourseID equals c.CourseID
@@ -29,7 +29,6 @@ namespace CRUD_Estudiantes.Controllers
                                    EnrollmentDate = e.EnrollmentDate,
                                    Grade = e.Grade
                                };
-                               //c.Title, p.LastName + ' ' + p.FirstName AS NameStudent, e.EnrollmentDate, e.Grade
 
                     return View(data.ToList());
                 }
@@ -39,7 +38,6 @@ namespace CRUD_Estudiantes.Controllers
 
                 throw;
             }
-
         }
 
         
@@ -59,7 +57,6 @@ namespace CRUD_Estudiantes.Controllers
                     return View();
                 using (var db = new VenonCollegeEntities())
                 {
-                    e.EnrollmentDate = DateTime.Now;
 
                     db.Enrollment.Add(e);
                     db.SaveChanges();
@@ -72,12 +69,10 @@ namespace CRUD_Estudiantes.Controllers
                 ModelState.AddModelError("", "Enrollment add error - " + ex.Message);
                 return View();
             }
-
         }
 
         public static string getCourseName(int p_courseID)
         {
-
             try
             {
                 using (var db = new VenonCollegeEntities())
@@ -92,7 +87,6 @@ namespace CRUD_Estudiantes.Controllers
 
                 throw;
             }
-            
         }
 
         public static string getStudentName(int p_personID)
@@ -162,6 +156,8 @@ namespace CRUD_Estudiantes.Controllers
                 using (var db = new VenonCollegeEntities())
                 {
                     Enrollment en = db.Enrollment.Find(e.EnrollmentID);
+                    
+
                     en.Grade = e.Grade;
 
                     db.SaveChanges();
