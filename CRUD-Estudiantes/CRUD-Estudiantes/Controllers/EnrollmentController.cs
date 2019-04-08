@@ -63,6 +63,42 @@ namespace CRUD_Estudiantes.Controllers
 
         }
 
+        public static string getCourseName(int p_courseID)
+        {
+
+            try
+            {
+                var db = new VenonCollegeEntities();
+                Course entCourse = db.Course.Find(p_courseID);
+
+                return entCourse.Title;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
+
+        public static string getStudentName(int p_personID)
+        {
+            try
+            {
+                var db = new VenonCollegeEntities();
+                Person entPerson = db.Person.Find(p_personID);
+
+                string completeName = entPerson.LastName + " " + entPerson.FirstName;
+
+                return completeName;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public ActionResult ListaCursos()
         {
             using (var db = new VenonCollegeEntities())

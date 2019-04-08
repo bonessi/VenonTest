@@ -28,25 +28,7 @@ namespace CRUD_Estudiantes.Models
         //public string CourseName { get; set; }
         // public string StudentName { get; set; }
 
-        public string getCourseName(int p_courseID)
-        {
-            var db = new VenonCollegeEntities();
-
-            Course entCourse = db.Course.Find(p_courseID);
-
-            return entCourse.Title;
-        }
-
-        public string getStudentName(int p_personID)
-        {
-            var db = new VenonCollegeEntities();
-
-            Person entPerson  = db.Person.Find(p_personID);
-
-            string completeName = entPerson.LastName + " " + entPerson.FirstName;
-
-            return completeName;
-        }
+        
 
 
     }

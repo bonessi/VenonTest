@@ -27,7 +27,7 @@
             Enrollment Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Grade)
+            Grade
         </th>
         <th>
             Actions
@@ -37,10 +37,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @item.getCourseName(item.CourseID)
+            @CRUD_Estudiantes.Controllers.EnrollmentController.getCourseName(item.CourseID)
         </td>
         <td>
-            @item.getStudentName(item.StudentID)
+           @CRUD_Estudiantes.Controllers.EnrollmentController.getStudentName(item.StudentID)
         </td>
         <td>
             @item.EnrollmentDate.ToShortDateString()
