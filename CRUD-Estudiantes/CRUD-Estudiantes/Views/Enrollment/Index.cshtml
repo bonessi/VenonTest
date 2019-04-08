@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CRUD_Estudiantes.Models.Enrollment>
+﻿@model IEnumerable<CRUD_Estudiantes.Models.EnrollmentCE>
 
 @{
     ViewBag.Title = "Enrollments";
@@ -37,10 +37,12 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @CRUD_Estudiantes.Controllers.EnrollmentController.getCourseName(item.CourseID)
+            @item.CourseName
+            @*@CRUD_Estudiantes.Controllers.EnrollmentController.getCourseName(item.CourseID)*@
         </td>
         <td>
-           @CRUD_Estudiantes.Controllers.EnrollmentController.getStudentName(item.StudentID)
+            @item.StudentName
+           @*@CRUD_Estudiantes.Controllers.EnrollmentController.getStudentName(item.StudentID)*@
         </td>
         <td>
             @item.EnrollmentDate.ToShortDateString()

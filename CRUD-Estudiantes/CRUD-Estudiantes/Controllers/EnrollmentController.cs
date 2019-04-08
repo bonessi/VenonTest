@@ -18,8 +18,20 @@ namespace CRUD_Estudiantes.Controllers
                 using (var db = new VenonCollegeEntities())
                 {
                     //List<Enrollment> lista = db.Enrollment.Where(e => e.Grade > 5).ToList();
+                    var data = from e in db.Enrollment
+                               join p in db.Person on e.StudentID equals p.ID
+                               join c in db.Course on e.CourseID equals c.CourseID
+                               select new EnrollmentCE()
+                               {
+                                   EnrollmentID = e.EnrollmentID,
+                                   CourseName = c.Title,
+                                   StudentName = (p.LastName +" "+ p.FirstName),
+                                   EnrollmentDate = e.EnrollmentDate,
+                                   Grade = e.Grade
+                               };
+                               //c.Title, p.LastName + ' ' + p.FirstName AS NameStudent, e.EnrollmentDate, e.Grade
 
-                    return View(db.Enrollment.ToList());
+                    return View(data.ToList());
                 }
             }
             catch (Exception)
@@ -68,10 +80,12 @@ namespace CRUD_Estudiantes.Controllers
 
             try
             {
-                var db = new VenonCollegeEntities();
-                Course entCourse = db.Course.Find(p_courseID);
+                using (var db = new VenonCollegeEntities())
+                {
+                    Course entCourse = db.Course.Find(p_courseID);
 
-                return entCourse.Title;
+                    return entCourse.Title;
+                }
             }
             catch (Exception)
             {
@@ -85,12 +99,14 @@ namespace CRUD_Estudiantes.Controllers
         {
             try
             {
-                var db = new VenonCollegeEntities();
-                Person entPerson = db.Person.Find(p_personID);
+                using (var db = new VenonCollegeEntities())
+                {
+                    Person entPerson = db.Person.Find(p_personID);
 
-                string completeName = entPerson.LastName + " " + entPerson.FirstName;
+                    string completeName = entPerson.LastName + " " + entPerson.FirstName;
 
-                return completeName;
+                    return completeName;
+                }
             }
             catch (Exception)
             {

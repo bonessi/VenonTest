@@ -175,7 +175,7 @@
     <Compile Include="Models\Enrollment.cs">
       <DependentUpon>ModelVenonCollege.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EnrollmentsCE.cs" />
+    <Compile Include="Models\EnrollmentCE.cs" />
     <Compile Include="Models\ModelVenonCollege.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
