@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<CRUD_Estudiantes.Models.EnrollmentCE>
 
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 @{
     ViewBag.Title = "Enrollments";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,9 +12,10 @@
 </div>
 
 <h2>Enrollments</h2>
-
 <p>
-    @Html.ActionLink("Add", "Agregar")
+    <b>Buscar:</b> @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    
+    <button class="btn btn-primary" onClick="location.href ='@Url.Action("Agregar")';return false;">Add</button>
 </p>
 
 <table class="table">
@@ -38,11 +41,11 @@
     <tr>
         <td>
             @item.CourseName
-            @*@CRUD_Estudiantes.Controllers.EnrollmentController.getCourseName(item.CourseID)*@
+            
         </td>
         <td>
             @item.StudentName
-           @*@CRUD_Estudiantes.Controllers.EnrollmentController.getStudentName(item.StudentID)*@
+           
         </td>
         <td>
             @item.EnrollmentDate.ToShortDateString()
@@ -51,13 +54,16 @@
             @Html.DisplayFor(modelItem => item.Grade)
         </td>
         <td>
-            @Html.ActionLink("View", "Detalle", new { id = item.EnrollmentID }) |
-            @Html.ActionLink("Edit", "Editar", new { id = item.EnrollmentID })  |
-            @Html.ActionLink("Delete", "Eliminar", new { id=item.EnrollmentID }, new { @class = "eEliminar"})
+            <button class="btn btn-info" onClick="location.href =' @Url.Action("Detalle", "Enrollment", new { id = item.EnrollmentID })';return false;">View</button>
+            <button class="btn btn-default" onClick="location.href =' @Url.Action("Editar", "Enrollment", new { id = item.EnrollmentID })';return false;">Edit</button>
+            <button class="btn btn-danger" onClick="location.href =' @Url.Action("Eliminar", "Enrollment", new { id = item.EnrollmentID })';return false;">Delete</button>
+        
         </td>
     </tr>
 }
 </table>
+<br />
+
 
 @section scripts{
 <script>

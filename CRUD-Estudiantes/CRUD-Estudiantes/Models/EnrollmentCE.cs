@@ -15,7 +15,8 @@ namespace CRUD_Estudiantes.Models
 
         [Display(Name = "Student")]
         public int StudentID { get; set; }
-        
+
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Enrollment Date")]
         public System.DateTime EnrollmentDate { get; set; }
         
@@ -24,7 +25,6 @@ namespace CRUD_Estudiantes.Models
         public string CourseName { get; set; }
 
         public string StudentName { get; set; }
-
 
     }
 
